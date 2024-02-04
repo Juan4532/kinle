@@ -1,3 +1,4 @@
+
 import os
 import random
 
@@ -13,12 +14,12 @@ class extracto():
             self.autor = txt[0].split('-')[1]
 
         if len(txt[1].split('|')) == 3:
-            self.pagina = txt[1].split(' ')[6]
+            self.pagina = txt[1].split(' ')[5]
             self.posicion = txt[1].split(' ')[9]
-            self.fecha = ' '.join(txt[1].split(' ')[14:])
+            self.fecha = ' '.join(txt[1].split(' ')[12:])
         elif len(txt[1].split('|')) == 2:
             self.posicion = txt[1].split(' ')[6]
-            self.fecha = ' '.join(txt[1].split(' ')[11:])
+            self.fecha = ' '.join(txt[1].split(' ')[7:])
 
         self.tipo = txt[1].split(' ')[2]
 
@@ -30,11 +31,11 @@ class extracto():
         self.l = []
 
         self.l.append("/home/juan/notas/Extractos/" +
-                      self.titulo.strip()+'-'+' '.join(self.texto.split(" ")[0:4])+".md",)
+                      self.titulo.strip()+'-'+self.posicion+".md",)
 
         f = open("/home/juan/notas/Extractos/" +
-                 self.titulo.strip()+'-'+' '.join(self.texto.split(" ")[0:4])+".md", "w")
-        f.write('Libro:[['+self.titulo.strip()+']]\n\n' +
+                 self.titulo.strip()+'-'+self.posicion+".md", "w")
+        f.write('Libro:[['+self.titulo.strip()+']]\n\n' + self.tipo + '\n' +
                 self.texto+'\n'+self.posicion+'\n'+self.fecha)
         f.close()
 
